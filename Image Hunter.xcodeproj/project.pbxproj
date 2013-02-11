@@ -19,6 +19,11 @@
 		8EB34D4616C43ED800C5D911 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB34D4416C43ED800C5D911 /* MainStoryboard_iPhone.storyboard */; };
 		8EB34D4916C43ED800C5D911 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB34D4716C43ED800C5D911 /* MainStoryboard_iPad.storyboard */; };
 		8EB34D4C16C43ED800C5D911 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D4B16C43ED800C5D911 /* ViewController.m */; };
+		8EB34D5416C43FC100C5D911 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5316C43FC100C5D911 /* GalleryViewController.m */; };
+		8EB34D5716C4401000C5D911 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5616C4401000C5D911 /* MainViewController.m */; };
+		8EB34D5A16C442E400C5D911 /* HttpOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5916C442E400C5D911 /* HttpOperations.m */; };
+		8EB34D5D16C5824100C5D911 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5C16C5824100C5D911 /* ImageInfo.m */; };
+		8EB34D6016C6E17800C5D911 /* PreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5F16C6E17800C5D911 /* PreviewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +44,16 @@
 		8EB34D4816C43ED800C5D911 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8EB34D4A16C43ED800C5D911 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8EB34D4B16C43ED800C5D911 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8EB34D5216C43FC100C5D911 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		8EB34D5316C43FC100C5D911 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		8EB34D5516C4401000C5D911 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		8EB34D5616C4401000C5D911 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		8EB34D5816C442E400C5D911 /* HttpOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOperations.h; sourceTree = "<group>"; };
+		8EB34D5916C442E400C5D911 /* HttpOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOperations.m; sourceTree = "<group>"; };
+		8EB34D5B16C5824100C5D911 /* ImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageInfo.h; sourceTree = "<group>"; };
+		8EB34D5C16C5824100C5D911 /* ImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageInfo.m; sourceTree = "<group>"; };
+		8EB34D5E16C6E17800C5D911 /* PreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewController.h; sourceTree = "<group>"; };
+		8EB34D5F16C6E17800C5D911 /* PreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +100,8 @@
 		8EB34D3216C43ED700C5D911 /* Image Hunter */ = {
 			isa = PBXGroup;
 			children = (
+				8EB34D5816C442E400C5D911 /* HttpOperations.h */,
+				8EB34D5916C442E400C5D911 /* HttpOperations.m */,
 				8EB34D3B16C43ED800C5D911 /* AppDelegate.h */,
 				8EB34D3C16C43ED800C5D911 /* AppDelegate.m */,
 				8EB34D4416C43ED800C5D911 /* MainStoryboard_iPhone.storyboard */,
@@ -92,6 +109,14 @@
 				8EB34D4A16C43ED800C5D911 /* ViewController.h */,
 				8EB34D4B16C43ED800C5D911 /* ViewController.m */,
 				8EB34D3316C43ED700C5D911 /* Supporting Files */,
+				8EB34D5216C43FC100C5D911 /* GalleryViewController.h */,
+				8EB34D5316C43FC100C5D911 /* GalleryViewController.m */,
+				8EB34D5516C4401000C5D911 /* MainViewController.h */,
+				8EB34D5616C4401000C5D911 /* MainViewController.m */,
+				8EB34D5B16C5824100C5D911 /* ImageInfo.h */,
+				8EB34D5C16C5824100C5D911 /* ImageInfo.m */,
+				8EB34D5E16C6E17800C5D911 /* PreviewController.h */,
+				8EB34D5F16C6E17800C5D911 /* PreviewController.m */,
 			);
 			path = "Image Hunter";
 			sourceTree = "<group>";
@@ -180,6 +205,11 @@
 				8EB34D3916C43ED800C5D911 /* main.m in Sources */,
 				8EB34D3D16C43ED800C5D911 /* AppDelegate.m in Sources */,
 				8EB34D4C16C43ED800C5D911 /* ViewController.m in Sources */,
+				8EB34D5416C43FC100C5D911 /* GalleryViewController.m in Sources */,
+				8EB34D5716C4401000C5D911 /* MainViewController.m in Sources */,
+				8EB34D5A16C442E400C5D911 /* HttpOperations.m in Sources */,
+				8EB34D5D16C5824100C5D911 /* ImageInfo.m in Sources */,
+				8EB34D6016C6E17800C5D911 /* PreviewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
