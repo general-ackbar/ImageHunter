@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PreviewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *ImagePreview;
-@property (weak, nonatomic) IBOutlet UIScrollView *ScrollViewPane;
-
+#import "UILazyImageView.h"
+@interface PreviewController : UIViewController <UIScrollViewDelegate>
+{
+    NSString *imageUrl;
+}
+//@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewPane;
+@property (retain, nonatomic) NSString *imageUrl;
+@property (retain, nonatomic) UIActivityIndicatorView *spinner;
 @end

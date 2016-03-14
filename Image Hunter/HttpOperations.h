@@ -12,7 +12,7 @@
 
 
 
-+(void)performLoginAt:(NSString *)url withUser:(NSString *)username andPassword:(NSString *)password;
-+ (NSMutableURLRequest *)sendPostRequest:(NSString *)url withParameters:(NSDictionary *)parameters;
+
+//+ (NSMutableURLRequest *)sendPostRequest:(NSString *)url withParameters:(NSDictionary *)parameters;
 + (NSMutableURLRequest *)sendGetRequest:(NSString *)url;
 @end

@@ -10,14 +10,16 @@
 #import "HttpOperations.h"
 #import "ImageInfo.h"
 #import "GalleryViewController.h"
+#import "GoogleSearcher.h"
 
 @implementation MainViewController
-@synthesize SearchTextField;
+@synthesize SearchTextField, searchSafeSwitch, searchTypeSegments, spinner;
 
 
 - (IBAction)performSearch:(UIButton *)sender {
     
-    NSString *url = [NSString stringWithFormat:@"https://www.google.dk/search?hl=en&safe=off&sout=1&site=imghp&tbm=isch&q=%@", [SearchTextField.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    /*
+    NSString *url = [NSString stringWithFormat:@"https://www.google.dk/search?%@", [self buildQuery]];
     
     NSMutableURLRequest *request = [HttpOperations sendGetRequest:url];
     
@@ -57,9 +59,27 @@
         
         [links addObject:ii];
     }
+     */
+    
+    NSString *url = [self buildQuery];
+    NSArray *links = [GoogleSearcher PerformSearchUsingQuery:url fromIndex:0];
+    
 
-    [self performSegueWithIdentifier:@"segueToOverview" sender:links];
+    [self performSegueWithIdentifier:@"segueToOverview" sender:       [[NSArray alloc]initWithObjects:url,links, nil]];
 
+}
+
+- (NSString *)buildQuery
+{
+    //NSString * query = [NSString stringWithFormat: @"hl=en&safe=%@&sout=1&site=imghp&tbs=itp:%@&tbm=isch&q=%@", (searchSafeSwitch.isOn ? @"on" : @"off"), [[searchTypeSegments titleForSegmentAtIndex: searchTypeSegments.selectedSegmentIndex] lowercaseString], [SearchTextField.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    
+    NSString * query = [NSString stringWithFormat: @"hl=en&safe=%@&site=imghp&tbs=itp:%@&tbm=isch&q=%@", (searchSafeSwitch.isOn ? @"on" : @"off"), [[searchTypeSegments titleForSegmentAtIndex: searchTypeSegments.selectedSegmentIndex] lowercaseString], [SearchTextField.text stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    
+    return query;
+}
+
+- (IBAction)dismissKeyboard:(id)sender {
+            [SearchTextField resignFirstResponder];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -67,6 +87,11 @@
     GalleryViewController *dest = [segue destinationViewController]; //topViewController];
     
     //Set values
-    dest.data = sender;
+    dest.requestData = [((NSArray *)sender) objectAtIndex:1]  ;
+    dest.query = [((NSArray *)sender) objectAtIndex:0]  ;
+
 }
+
+
+
 @end

@@ -10,9 +10,13 @@
 
 @interface MainViewController : UIViewController 
 @property (weak, nonatomic) IBOutlet UITextField *SearchTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *searchTypeSegments;
+@property (weak, nonatomic) IBOutlet UISwitch *searchSafeSwitch;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 
-- (IBAction)performSearch:(UIButton *)sender;
+- (IBAction)performSearch:(id)sender;
+- (IBAction)dismissKeyboard:(id)sender;
 
 
 @end

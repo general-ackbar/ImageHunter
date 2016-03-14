@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E603F4916C92E6B00F48738 /* UILazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E603F4816C92E6B00F48738 /* UILazyImageView.m */; };
+		8E603F4D16C9366C00F48738 /* empty-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E603F4C16C9366C00F48738 /* empty-frame.png */; };
+		8E9960DF16CAD32700E648E5 /* background-gradient-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9960DD16CAD32700E648E5 /* background-gradient-overlay.png */; };
+		8EA6E8D616F7540700F08FB7 /* GoogleSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA6E8D516F7540700F08FB7 /* GoogleSearcher.m */; };
 		8EB34D2D16C43ED700C5D911 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB34D2C16C43ED700C5D911 /* UIKit.framework */; };
 		8EB34D2F16C43ED700C5D911 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB34D2E16C43ED700C5D911 /* Foundation.framework */; };
 		8EB34D3116C43ED700C5D911 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB34D3016C43ED700C5D911 /* CoreGraphics.framework */; };
@@ -18,15 +22,23 @@
 		8EB34D4316C43ED800C5D911 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB34D4216C43ED800C5D911 /* Default-568h@2x.png */; };
 		8EB34D4616C43ED800C5D911 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB34D4416C43ED800C5D911 /* MainStoryboard_iPhone.storyboard */; };
 		8EB34D4916C43ED800C5D911 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EB34D4716C43ED800C5D911 /* MainStoryboard_iPad.storyboard */; };
-		8EB34D4C16C43ED800C5D911 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D4B16C43ED800C5D911 /* ViewController.m */; };
 		8EB34D5416C43FC100C5D911 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5316C43FC100C5D911 /* GalleryViewController.m */; };
 		8EB34D5716C4401000C5D911 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5616C4401000C5D911 /* MainViewController.m */; };
 		8EB34D5A16C442E400C5D911 /* HttpOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5916C442E400C5D911 /* HttpOperations.m */; };
 		8EB34D5D16C5824100C5D911 /* ImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5C16C5824100C5D911 /* ImageInfo.m */; };
 		8EB34D6016C6E17800C5D911 /* PreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB34D5F16C6E17800C5D911 /* PreviewController.m */; };
+		8EE48EF41C454FB400C65566 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE48EF31C454FB400C65566 /* Photos.framework */; };
+		8EE48EF61C45543B00C65566 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE48EF51C45543B00C65566 /* checkmark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E603F4716C92E6B00F48738 /* UILazyImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILazyImageView.h; sourceTree = "<group>"; };
+		8E603F4816C92E6B00F48738 /* UILazyImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILazyImageView.m; sourceTree = "<group>"; };
+		8E603F4C16C9366C00F48738 /* empty-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty-frame.png"; sourceTree = "<group>"; };
+		8E8D88FB1C3BB27500956A87 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8E9960DD16CAD32700E648E5 /* background-gradient-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-gradient-overlay.png"; sourceTree = "<group>"; };
+		8EA6E8D416F7540700F08FB7 /* GoogleSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSearcher.h; sourceTree = "<group>"; };
+		8EA6E8D516F7540700F08FB7 /* GoogleSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSearcher.m; sourceTree = "<group>"; };
 		8EB34D2916C43ED700C5D911 /* Image Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Hunter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB34D2C16C43ED700C5D911 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8EB34D2E16C43ED700C5D911 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,8 +54,6 @@
 		8EB34D4216C43ED800C5D911 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8EB34D4516C43ED800C5D911 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		8EB34D4816C43ED800C5D911 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		8EB34D4A16C43ED800C5D911 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8EB34D4B16C43ED800C5D911 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8EB34D5216C43FC100C5D911 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		8EB34D5316C43FC100C5D911 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		8EB34D5516C4401000C5D911 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -54,6 +64,8 @@
 		8EB34D5C16C5824100C5D911 /* ImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageInfo.m; sourceTree = "<group>"; };
 		8EB34D5E16C6E17800C5D911 /* PreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewController.h; sourceTree = "<group>"; };
 		8EB34D5F16C6E17800C5D911 /* PreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewController.m; sourceTree = "<group>"; };
+		8EE48EF31C454FB400C65566 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		8EE48EF51C45543B00C65566 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EE48EF41C454FB400C65566 /* Photos.framework in Frameworks */,
 				8EB34D2D16C43ED700C5D911 /* UIKit.framework in Frameworks */,
 				8EB34D2F16C43ED700C5D911 /* Foundation.framework in Frameworks */,
 				8EB34D3116C43ED700C5D911 /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +83,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E603F4E16CA3BB200F48738 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8EB34D5216C43FC100C5D911 /* GalleryViewController.h */,
+				8EB34D5316C43FC100C5D911 /* GalleryViewController.m */,
+				8EB34D5516C4401000C5D911 /* MainViewController.h */,
+				8EB34D5616C4401000C5D911 /* MainViewController.m */,
+				8EB34D5E16C6E17800C5D911 /* PreviewController.h */,
+				8EB34D5F16C6E17800C5D911 /* PreviewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8E603F4F16CA3BD600F48738 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8EB34D5B16C5824100C5D911 /* ImageInfo.h */,
+				8EB34D5C16C5824100C5D911 /* ImageInfo.m */,
+				8E603F4716C92E6B00F48738 /* UILazyImageView.h */,
+				8E603F4816C92E6B00F48738 /* UILazyImageView.m */,
+				8EB34D5816C442E400C5D911 /* HttpOperations.h */,
+				8EB34D5916C442E400C5D911 /* HttpOperations.m */,
+				8EA6E8D416F7540700F08FB7 /* GoogleSearcher.h */,
+				8EA6E8D516F7540700F08FB7 /* GoogleSearcher.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		8EB34D2016C43ED700C5D911 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +131,8 @@
 		8EB34D2B16C43ED700C5D911 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8EE48EF31C454FB400C65566 /* Photos.framework */,
+				8E8D88FB1C3BB27500956A87 /* AssetsLibrary.framework */,
 				8EB34D2C16C43ED700C5D911 /* UIKit.framework */,
 				8EB34D2E16C43ED700C5D911 /* Foundation.framework */,
 				8EB34D3016C43ED700C5D911 /* CoreGraphics.framework */,
@@ -100,23 +143,13 @@
 		8EB34D3216C43ED700C5D911 /* Image Hunter */ = {
 			isa = PBXGroup;
 			children = (
-				8EB34D5816C442E400C5D911 /* HttpOperations.h */,
-				8EB34D5916C442E400C5D911 /* HttpOperations.m */,
+				8E603F4F16CA3BD600F48738 /* Classes */,
 				8EB34D3B16C43ED800C5D911 /* AppDelegate.h */,
 				8EB34D3C16C43ED800C5D911 /* AppDelegate.m */,
 				8EB34D4416C43ED800C5D911 /* MainStoryboard_iPhone.storyboard */,
 				8EB34D4716C43ED800C5D911 /* MainStoryboard_iPad.storyboard */,
-				8EB34D4A16C43ED800C5D911 /* ViewController.h */,
-				8EB34D4B16C43ED800C5D911 /* ViewController.m */,
 				8EB34D3316C43ED700C5D911 /* Supporting Files */,
-				8EB34D5216C43FC100C5D911 /* GalleryViewController.h */,
-				8EB34D5316C43FC100C5D911 /* GalleryViewController.m */,
-				8EB34D5516C4401000C5D911 /* MainViewController.h */,
-				8EB34D5616C4401000C5D911 /* MainViewController.m */,
-				8EB34D5B16C5824100C5D911 /* ImageInfo.h */,
-				8EB34D5C16C5824100C5D911 /* ImageInfo.m */,
-				8EB34D5E16C6E17800C5D911 /* PreviewController.h */,
-				8EB34D5F16C6E17800C5D911 /* PreviewController.m */,
+				8E603F4E16CA3BB200F48738 /* Controllers */,
 			);
 			path = "Image Hunter";
 			sourceTree = "<group>";
@@ -124,7 +157,10 @@
 		8EB34D3316C43ED700C5D911 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E9960DD16CAD32700E648E5 /* background-gradient-overlay.png */,
+				8E603F4C16C9366C00F48738 /* empty-frame.png */,
 				8EB34D3416C43ED700C5D911 /* Image Hunter-Info.plist */,
+				8EE48EF51C45543B00C65566 /* checkmark.png */,
 				8EB34D3516C43ED700C5D911 /* InfoPlist.strings */,
 				8EB34D3816C43ED800C5D911 /* main.m */,
 				8EB34D3A16C43ED800C5D911 /* Image Hunter-Prefix.pch */,
@@ -161,8 +197,13 @@
 		8EB34D2116C43ED700C5D911 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Codeninja;
+				TargetAttributes = {
+					8EB34D2816C43ED700C5D911 = {
+						DevelopmentTeam = RM3F5X6445;
+					};
+				};
 			};
 			buildConfigurationList = 8EB34D2416C43ED700C5D911 /* Build configuration list for PBXProject "Image Hunter" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -192,6 +233,9 @@
 				8EB34D4316C43ED800C5D911 /* Default-568h@2x.png in Resources */,
 				8EB34D4616C43ED800C5D911 /* MainStoryboard_iPhone.storyboard in Resources */,
 				8EB34D4916C43ED800C5D911 /* MainStoryboard_iPad.storyboard in Resources */,
+				8E603F4D16C9366C00F48738 /* empty-frame.png in Resources */,
+				8E9960DF16CAD32700E648E5 /* background-gradient-overlay.png in Resources */,
+				8EE48EF61C45543B00C65566 /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,12 +248,13 @@
 			files = (
 				8EB34D3916C43ED800C5D911 /* main.m in Sources */,
 				8EB34D3D16C43ED800C5D911 /* AppDelegate.m in Sources */,
-				8EB34D4C16C43ED800C5D911 /* ViewController.m in Sources */,
 				8EB34D5416C43FC100C5D911 /* GalleryViewController.m in Sources */,
 				8EB34D5716C4401000C5D911 /* MainViewController.m in Sources */,
 				8EB34D5A16C442E400C5D911 /* HttpOperations.m in Sources */,
 				8EB34D5D16C5824100C5D911 /* ImageInfo.m in Sources */,
 				8EB34D6016C6E17800C5D911 /* PreviewController.m in Sources */,
+				8E603F4916C92E6B00F48738 /* UILazyImageView.m in Sources */,
+				8EA6E8D616F7540700F08FB7 /* GoogleSearcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +302,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -304,10 +350,15 @@
 		8EB34D5016C43ED800C5D911 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Image Hunter/Image Hunter-Prefix.pch";
 				INFOPLIST_FILE = "Image Hunter/Image Hunter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dk.codeninja.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -315,10 +366,15 @@
 		8EB34D5116C43ED800C5D911 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Image Hunter/Image Hunter-Prefix.pch";
 				INFOPLIST_FILE = "Image Hunter/Image Hunter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dk.codeninja.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -342,6 +398,7 @@
 				8EB34D5116C43ED800C5D911 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
