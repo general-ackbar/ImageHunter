@@ -10,7 +10,11 @@
 
 @interface GoogleSearcher : NSObject
 
-+ (NSArray *)PerformSearchFrom: (NSString *)keyword fromIndex: (int)start onType: (NSString *)type withSafe: (BOOL) safe
+//+ (NSArray *)PerformSearchFrom: (NSString *)keyword fromIndex: (int)start onType: (NSString *)type withSafe: (BOOL) safe
 ;
-+ (NSArray *)PerformSearchUsingQuery:(NSString *)query fromIndex:(int)start;
+//+(void)PerformSearchUsingQuery:(NSString *)query fromIndex:(int) start completionBlock:(void (^)(NSArray *links))completionBlock;
+
+//+ (NSArray *)PerformSearchUsingQuery:(NSString *)query fromIndex:(int)start;
++(NSArray *)ParseResultsFrom:(NSString *)responseBody;
+
 @end

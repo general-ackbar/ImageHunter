@@ -18,7 +18,7 @@
  
     imageLoaded = NO;
 
-    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
     [[self spinner] setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
     [self addSubview:spinner];
     [spinner startAnimating];
@@ -29,9 +29,13 @@
 
 -(void)loadImage
 {
-    self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-    [spinner stopAnimating];
-    imageLoaded = YES;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self->url]]];
+        [self->spinner stopAnimating];
+        self->imageLoaded = YES;
+    });
+    
     
 }
 

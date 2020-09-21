@@ -11,7 +11,7 @@
 #import "PreviewController.h"
 #import "UILazyImageView.h"
 #import "GoogleSearcher.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+
 
 
 
@@ -20,10 +20,13 @@
 
 -(void)viewDidLoad
 {
+    
+    
     [super viewDidLoad];
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+
     
     currentIndex = 0;
     
@@ -42,24 +45,28 @@
     
     saveButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(beginDownload:)];
     
-    busy = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    if (@available(iOS 13.0, *)) {
+        busy = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    } else {
+        // Fallback on earlier versions
+    }
     busy.hidesWhenStopped = YES;
-//    [busy startAnimating];
-//    [self.navigationItem.rightBarButtonItem initWithCustomView:busy];
     
     busyIndicator =[[UIBarButtonItem alloc] initWithCustomView: busy];
     
-    
     selectedCells = [[NSMutableArray alloc] init];
+     
 }
 
-
+/*
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
-    UICollectionReusableView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"load" forIndexPath:indexPath];
+    UICollectionReusableView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"MediaCell" forIndexPath:indexPath];
     return cell;
 }
+ */
+
 
 #pragma mark - UICollectionView Datasource
 // 1
@@ -80,21 +87,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *CellIdentifier = @"MediaCell";
-
-
     
     ImageInfo *mediaItem = [self.requestData objectAtIndex: indexPath.row ];
-    
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
         cell = [[UICollectionViewCell alloc] init];
     }
     
-
     cell.backgroundColor = [UIColor blackColor];
 
-    
     UILazyImageView *lv = [[UILazyImageView alloc] init]; //WithImage:[UIImage imageNamed:@"empty-frame.png"]];
     lv.contentMode = UIViewContentModeScaleToFill;
     lv.frame = cell.bounds;
@@ -124,7 +126,6 @@
     else
         [self performSegueWithIdentifier:@"segueToPreview" sender:[requestData objectAtIndex: indexPath.row]];
 }
-
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -170,6 +171,82 @@
     }
 }
 
+#if TARGET_OS_MACCATALYST
+
+-(IBAction)beginDownload:(id)sender
+{
+    __block NSInteger downloadCount = 0;
+    __block NSInteger totalCount = 0;
+    
+
+    //Start spinner
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self->busy startAnimating];
+    });
+
+    //Iterate through the selected files
+    for (NSIndexPath *index in selectedCells) {
+        
+        NSURL *url = [NSURL URLWithString: ((ImageInfo *)[requestData objectAtIndex:index.item]).ImageURL];
+
+        
+        [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if ( !error )
+            {
+                
+                bool success = [self saveImageData:data as: url.lastPathComponent toFolder:self.title];
+                totalCount++;
+                if (!success) {
+                    //An error occurred
+                    NSLog(@"Failed to save image. %@", index);
+                }
+                else
+                {
+                    //The files was saved succesfully
+                    downloadCount++;
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView cellForItemAtIndexPath:index].alpha = 1;
+                });
+                
+                //Clear alpha marking
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView cellForItemAtIndexPath:index].alpha = 1;
+                });
+                
+                //All done, so inform user
+                if(totalCount == self->selectedCells.count)
+                {
+                    //Clear the selected images
+                    [self->selectedCells removeAllObjects];
+                    
+                    //Show alert box when all done. Inform user how many images were actually saved
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:[NSString stringWithFormat:@"Succeded to download %ld images.", (long)downloadCount] preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                              handler:^(UIAlertAction * action) {}];
+                        [alert addAction:defaultAction];
+                        
+                        //Once the user press OK stop spinner
+                        [self presentViewController:alert animated:YES completion:^{
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self->busy stopAnimating];
+                            });
+                        }];
+                    });
+                }
+            } else {
+                NSLog(@"Error download an image");
+            }
+        }] resume];
+    }
+
+}
+#else
+
+
 - (IBAction)beginDownload:(id)sender
 {
     __block NSInteger downloadCount = 0;
@@ -178,103 +255,173 @@
 
     //Start spinner
     dispatch_async(dispatch_get_main_queue(), ^{
-        [busy startAnimating];
+        [self->busy startAnimating];
     });
 
     //Iterate through the selected files
     for (NSIndexPath *index in selectedCells) {
         
         //Get URL
-        NSURL *url = [NSURL URLWithString: ((ImageInfo *)[requestData objectAtIndex:index.row]).ImageURL];
+        /*
+        NSInteger item = index.item;
+        ImageInfo *info = [requestData objectAtIndex:item];
+        NSURL *url = [NSURL URLWithString: info.ImageURL];
+        */
+        NSURL *url = [NSURL URLWithString: ((ImageInfo *)[requestData objectAtIndex:index.item]).ImageURL];
         
         //Start asynchronous download of image
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
             
+            if(succeeded)
+            {
             //save image once downloaded
             [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^
              {
-                 PHAssetChangeRequest *changeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+                 PHAssetChangeRequest *changeRequest = [PHAssetChangeRequest  creationRequestForAssetFromImage:image];
                  changeRequest.creationDate = [NSDate date];
              }
-             
-                                              completionHandler:^(BOOL success, NSError * _Nullable error) {
-                                                  //Keep track of files processed
-                                                  totalCount++;
-                                                  if (!success) {
-                                                      //An error occurred
-                                                      NSLog(@"Failed to save image. %@", index);
-                                                  }
-                                                  else
-                                                  {
-                                                      //The files was saved succesfully
-                                                      downloadCount++;
-                                                  }
-            
-                                                  //All done, so inform user
-                                                  if(totalCount == selectedCells.count)
-                                                  {
-                                                      //Clear the selected images
-                                                      [selectedCells removeAllObjects];
+             completionHandler:^(BOOL success, NSError * _Nullable error) {
+                //Keep track of files processed
+                totalCount++;
+                if (!success) {
+                    //An error occurred
+                    NSLog(@"Failed to save image. %@", index);
+                } else {
+                    //The files was saved succesfully
+                    downloadCount++;
+                }
+                //Clear alpha marking
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView cellForItemAtIndexPath:index].alpha = 1;
+                });
                 
-                                                      //Show alert box when all done. Inform user how many images were actually saved
-                                                      dispatch_async(dispatch_get_main_queue(), ^{
+                //All done, so inform user
+                if(totalCount == self->selectedCells.count)
+                {
+                    //Clear the selected images
+                    [self->selectedCells removeAllObjects];
                     
-                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:[NSString stringWithFormat:@"Succeded to download %ld images.", (long)downloadCount] preferredStyle:UIAlertControllerStyleAlert];
+                    //Show alert box when all done. Inform user how many images were actually saved
+                    dispatch_async(dispatch_get_main_queue(), ^{
+        
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:[NSString stringWithFormat:@"Succeded to download %ld images.", (long)downloadCount] preferredStyle:UIAlertControllerStyleAlert];
                                                           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                                           handler:^(UIAlertAction * action) {}];
-                                                          [alert addAction:defaultAction];
+                        [alert addAction:defaultAction];
 
-                                                          //Once th euser press OK stop spinner
-                                                          [self presentViewController:alert animated:YES completion:^{
-                                                              [busy stopAnimating];
-                                                          }];
-                                                      });
-                                                  }
-                                              }
-             ];
-            //Clear alpha marking
-            [self.collectionView cellForItemAtIndexPath:index].alpha = 1;
+                        //Once the user press OK stop spinner
+                        [self presentViewController:alert animated:YES completion:^{
+                                                              
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self->busy stopAnimating];
+                        });
+                                                              
+                                                              
+                    }];
+                });
+               }
+              }
+             
+             ] ;
+            } else { NSLog(@"Error download an image"); }
         }];
+        
+        
     }
 
 }
+
+#endif
 
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if ( !error )
-                               {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   completionBlock(YES,image);
-                               } else{
-                                   completionBlock(NO,nil);
-                               }
-                           }];
+    
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:  ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if ( !error )
+        {
+            UIImage *image = [[UIImage alloc] initWithData:data];
+            completionBlock(YES,image);
+        } else{
+            completionBlock(NO,nil);
+        }
+
+    }];
+    [task resume];
 }
+
 
 
 - (void)downloadImagesAsynchronous
 {
-    [spinner stopAnimating];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self->spinner stopAnimating];
+    });
+    
 }
 
 - (IBAction)buttonLoadMore:(id)sender {
     
-    currentIndex += 20;
+    currentIndex += 100;
     
-    [requestData addObjectsFromArray:[GoogleSearcher PerformSearchUsingQuery:query fromIndex:currentIndex]];
+    NSString *url = [NSString stringWithFormat:@"https://www.google.dk/search?%@&start=%d", query, currentIndex];
     
-    [self.collectionView reloadData];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]  initWithURL:[NSURL URLWithString: url]];
     
-    //CGPoint bottomOffset = CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.bounds.size.height);
-    //NSLog(@"%d x %d", bottomOffset.x, bottomOffset.y);
-    //[self.collectionView setContentOffset:bottomOffset animated:YES];
-
+    //Pretend we are a desktop browser
+    NSString* userAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:43.0) Gecko/20100101 Firefox/43.0";
+    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:  ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if(error)
+        {
+            NSLog(@"%@", error.description);
+        }
+        
+        NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        NSArray *links = [GoogleSearcher ParseResultsFrom:responseBody];
+        
+        [self->requestData addObjectsFromArray:links];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }] resume];
 }
 
+-(BOOL) saveImageData: (NSData *)data as:(NSString *)name toFolder:(NSString *)folder {
+    NSURL *downloadFolder = [[[NSFileManager defaultManager] URLsForDirectory:NSDownloadsDirectory inDomains:NSUserDomainMask] firstObject];
+    NSURL *subFolder = [downloadFolder URLByAppendingPathComponent:folder];
+    NSError *error;
+    if(![[NSFileManager defaultManager] fileExistsAtPath:subFolder.absoluteString])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtURL:subFolder withIntermediateDirectories:YES attributes:nil error:&error];
+        if(error)
+            NSLog(@"%@", error.description);
+    }
+        
+    NSURL *fileURL = [subFolder URLByAppendingPathComponent:name];
+    int counter = 1;
+    
+    while([[NSFileManager defaultManager] fileExistsAtPath:fileURL.path ])
+    {
+        fileURL = [subFolder URLByAppendingPathComponent: [NSString stringWithFormat: @"%@_%d.%@", [name stringByDeletingPathExtension], counter, [name pathExtension]]];
+        counter++;
+    }
+    // Save image data to file.
+    [data writeToURL:fileURL options:NSDataWritingAtomic error:&error];
+
+    if(error){
+        NSLog(@"%@", error.description);
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 @end

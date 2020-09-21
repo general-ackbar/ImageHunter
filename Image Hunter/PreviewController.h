@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UILazyImageView.h"
-@interface PreviewController : UIViewController <UIScrollViewDelegate>
+#import "Communicator.h"
+
+@interface PreviewController : UIViewController <UIScrollViewDelegate,MessageDelegate>
 {
     NSString *imageUrl;
+    Communicator *com;
 }
 //@property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewPane;

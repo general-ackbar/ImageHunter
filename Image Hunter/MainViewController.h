@@ -13,6 +13,12 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *searchTypeSegments;
 @property (weak, nonatomic) IBOutlet UISwitch *searchSafeSwitch;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UISwitch *searchClassicSwitch;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *searchSizeSegments;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *searchColorSegments;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *searchFormatSegments;
+
+
 
 
 - (IBAction)performSearch:(id)sender;
